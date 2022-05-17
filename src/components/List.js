@@ -6,9 +6,7 @@ import dateFormat from "dateformat";
 const width = Dimensions.get("window").width;
 
 const List = ({data, bgColor}) => {
-    useEffect(() => {
-      console.log('thisd',data);
-    }, [data]);
+    
    return (
       <>
          <FlatList

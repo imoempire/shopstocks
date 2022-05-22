@@ -25,7 +25,7 @@ const Bottomtabs = () => {
         tabBarStyle: {
           height: 60,
           position: "absolute",
-          bottom: 16,
+          bottom: 10,
           marginHorizontal: 20,
           borderRadius: 10,
           backgroundColor: "#4E4D54",

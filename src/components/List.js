@@ -1,26 +1,27 @@
-import React, {useEffect} from 'react';
-import {View, StyleSheet, FlatList, Dimensions, TouchableOpacity, Image, Text, ScrollView} from 'react-native';
+import React, {useEffect, useRef} from 'react';
+import {View, Animated, StyleSheet, FlatList, Dimensions, TouchableOpacity, Image, Text, ScrollView} from 'react-native';
 import dateFormat from "dateformat";
 
 
 const width = Dimensions.get("window").width;
 
 const List = ({data, bgColor}) => {
-    
+
    return (
       <>
          <FlatList
               data={data}
               keyExtractor={(item) => item.id}
-              renderItem={({ item }) => {
+              renderItem={({ item, index }) => {
                 return (
-                  <ScrollView style={styles.Tabs}>
+                    <>
+                  <Animated.View style={[styles.Tabs]}>
                     <TouchableOpacity
                       style={[
                         styles.Tabs,
                         {
                           backgroundColor:
-                            bgColor === "white" ? null : "#4E4D54",
+                            bgColor === "white" ? 'white' : "#4E4D54",
                           borderRadius: 10,
                           padding: 10,
                         },
@@ -28,10 +29,10 @@ const List = ({data, bgColor}) => {
                     >
                       <Image
                         style={{ width: 100, height: 100, borderRadius: 10 }}
-                        source={{uri: item.image}}
+                        source={item.image}
                       />
                       <View style={styles.Info}>
-                        <Text style={{color: bgColor !== "white" ? 'white' : 'black'}}>{item.name}</Text>
+                        <Text style={{color: bgColor !== "white" ? 'white' : 'black', fontWeight: '700'}}>{item.name}</Text>
                         <View
                           style={{
                             justifyContent: "space-between",
@@ -40,7 +41,7 @@ const List = ({data, bgColor}) => {
                             alignItems: "center",
                           }}
                         >
-                          <Text style={{color: bgColor !== "white" ? 'white' : 'black'}}>Quantity</Text>
+                          <Text style={{color: bgColor !== "white" ? 'white' : 'black', opacity: .8}}>Quantity</Text>
                           <View
                             style={{
                               backgroundColor:
@@ -57,10 +58,11 @@ const List = ({data, bgColor}) => {
                             </Text>
                           </View>
                         </View>
-                        <Text style={{color: bgColor !== "white" ? 'white' : 'black'}}>{dateFormat(item.date, "default")}</Text>
+                        <Text style={{color: bgColor !== "white" ? 'white' : 'black',opacity: .8}}>{dateFormat(item.date, "default")}</Text>
                       </View>
                     </TouchableOpacity>
-                  </ScrollView>
+                  </Animated.View>
+                  </>
                 );
               }}
             />
@@ -71,7 +73,7 @@ const List = ({data, bgColor}) => {
 const styles = StyleSheet.create({
    Tab: {
       // flex: 1,
-      marginHorizontal: 10,
+      // marginHorizontal: 10,
     },
     Tabs: {
       flexDirection: "row",

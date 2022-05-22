@@ -4,15 +4,20 @@ import { getStatusBarHeight } from "react-native-status-bar-height";
 import { AssestContext } from "../Context/AssetContext";
 
 import { Assest } from "../components/Data";
+import SellList from "../components/SellList";
 const width = Dimensions.get("window").width;
 const statusHeight = getStatusBarHeight();
 const Sales = () => {
   const { assest, setAssest, bgColor = "white" } = useContext(AssestContext);
+ 
   //   const [width, setWidth] = useState();
   const renderAssest = Assest.map((item) => {
     return item.quantity;
   });
+  // const lastItem = Assest.slice(-1);
+  const ItemsToRender = Assest.slice(0, -1);
 
+  // Total Assest
   const num = renderAssest;
   let numOr0 = (n) => (isNaN(n) ? 0 : n);
   const Total = num.reduce((a, b) => numOr0(a) + numOr0(b));
@@ -39,67 +44,13 @@ const Sales = () => {
       <Text style={{color: TextColor, fontSize: 20, fontWeight: 'bold'}}>Sales Chart</Text>
       </View>
       <View style={styles.chart}>
-        <Text style={{ fontSize: 20, color: TextColor }}>Total Assest : {Total} </Text>
+        <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
+        <Text style={{ fontSize: 20, color: TextColor }}> All Asset</Text>
+        <Text style={{ fontSize: 20, color: TextColor }}>Total: {Total} </Text>
+        </View>
         <View style={{ marginVertical: 20 }}>
           <View style={styles.circle}>
-            {
-              <FlatList
-                // horizontal
-                data={Assest}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => {
-                  return (
-                    <View style={{ marginVertical: 10, alignItems: "center" }}>
-                      <View
-                        style={[
-                          styles.bar,
-                          {
-                            borderRadius: 10,
-                            borderWidth: 1,
-                            height: 40,
-                            marginHorizontal: 0,
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            paddingHorizontal: 2,
-                            borderColor: TextColor
-                          }
-                        ]}
-                      >
-                          {/* One */}
-                        <View
-                          style={{
-                            width: getWidth(item.quantity),
-                            height: 35,
-                            backgroundColor: item.color,
-                            justifyContent: "center",
-                            alignItems: "center",
-                            borderRadius: 10,
-                          }}
-                        >
-                        </View>
-                        {/* Two */}
-                        <View
-                          style={{
-                            width: getHeight(item.quantity),
-                            height: 30,
-                            backgroundColor: bgColor,
-                            justifyContent: "center",
-                            alignItems: "center",
-                            borderTopRightRadius: 10,
-                            borderTopLeftRadius: 10,
-                          }}
-                        >
-                          <Text style={{color: TextColor}} >
-                            {item.name} ({item.quantity})
-                          </Text>
-                        </View>
-                        
-                      </View>
-                    </View>
-                  );
-                }}
-              />
-            }
+           <SellList data={ItemsToRender} bgColor={bgColor} />
           </View>
           <View style={styles.Colors}></View>
         </View>
@@ -124,7 +75,6 @@ const styles = StyleSheet.create({
     //  flexDirection: 'row'
   },
   circle: {
-    //  backgroundColor: "pink",
     width: width - 30,
     height: 400,
     marginHorizontal: 5,

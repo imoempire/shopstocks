@@ -4,7 +4,6 @@ import Home from "../Screens/Home";
 
 import { NavigationContainer } from "@react-navigation/native";
 import AddAssest from "../Screens/AddAssest";
-import Try from "../Screens/Try";
 import Bottomtabs from "./BottomTabs";
 
 const Stack = createStackNavigator();

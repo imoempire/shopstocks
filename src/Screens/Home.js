@@ -9,7 +9,8 @@ import {
   Dimensions,
   TouchableOpacity,
   SafeAreaView,
-  ScrollView
+  ScrollView,
+  ImageBackground
 } from "react-native";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import dateFormat from "dateformat";
@@ -33,15 +34,15 @@ const Home = ({ navigation }) => {
     iconColor = "#6b5fc5",
   } = useContext(AssestContext);
 
-  const [index, setIndex] = useState(6);
+  const [index, setIndex] = useState(5);
   const ItemsToRender = Assest.slice(0, index);
 
   return (
-    <View style={[styles.container, { backgroundColor: bgColor }]}>
+    <ImageBackground blurRadius={5} source={require("../../assets/background.jpg")} style={[styles.container, { backgroundColor: bgColor }]}>
       <View style={styles.search}>
         <View style={[styles.searchTab, {backgroundColor: bgColor === "white" ? 'white' : '#4E4D54', borderWidth: bgColor === "white" ? 1 : null}]}>
           <View style={{ marginHorizontal: 20 }}>
-            <FontAwesome name="search" size={20} color="black" />
+            <FontAwesome name="search" size={20} color={bgColor === "white" ? 'black' : 'white'} />
           </View>
           <View>
             <TextInput placeholder="Search..." />
@@ -63,17 +64,17 @@ const Home = ({ navigation }) => {
       </View>
       <View style={styles.Tab}>
         {bgColor === "white" ? (
-          <Text style={{ fontWeight: "700", fontSize: 30, color: "black" }}>
-            Assest
+          <Text style={{ fontWeight: "700", fontSize: 20, color: "white" }}>
+            Recent Assest
           </Text>
         ) : (
-          <Text style={{ fontWeight: "700", fontSize: 30, color: "white" }}>
-            Assest
+          <Text style={{ fontWeight: "700", fontSize: 20, color: "white" }}>
+            Recent Assest
           </Text>
         )}
-        <View>
-          {assest.length !== 0 ? (
-            <List data={assest} bgColor={bgColor}/>
+        <View style={{marginBottom: 100}}>
+          {ItemsToRender.length !== 0 ? (
+            <List data={ItemsToRender} bgColor={bgColor}/>
           ) : (
             <View style={{ alignItems: "center", justifyContent: "center" }}>
               {bgColor === "white" ? (
@@ -85,7 +86,7 @@ const Home = ({ navigation }) => {
           )}
         </View>
       </View>
-    </View>
+    </ImageBackground>
   );
 };
 

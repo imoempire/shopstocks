@@ -7,7 +7,7 @@ export const Assest = [
     quantity: 40,
     image: require("../../assets/rolls.jpg"),
     date: new Date(),
-    color: 'red'
+    cart: 5
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const Assest = [
     quantity: 50,
     image: require("../../assets/R.jpg"),
     date: new Date(),
-    color: 'pink'
+    cart: 3
   },
   {
     id: 3,
@@ -23,7 +23,7 @@ export const Assest = [
     quantity: 60,
     image: require("../../assets/rolls.jpg"),
     date: new Date(),
-    color: 'yellow'
+    cart: 0
   },
   {
     id: 54,
@@ -31,7 +31,7 @@ export const Assest = [
     quantity: 37,
     image: require("../../assets/download.jpg"),
     date: new Date(),
-    color: 'green'
+    cart: 0
   },
   {
     id: 4,
@@ -39,7 +39,7 @@ export const Assest = [
     quantity: 20,
     image: require("../../assets/cover.jpg"),
     date: new Date(),
-    color: 'blue'
+    cart: 0
   },
   {
     id: 5,
@@ -47,6 +47,6 @@ export const Assest = [
     quantity: 37,
     image: require("../../assets/download.jpg"),
     date: new Date(),
-    color: 'green'
+    cart: 0
   },
 ];
